@@ -3,6 +3,7 @@ Questo progetto contiene il protocollo universale di ricerca approfondita multi-
 
 ## File
 - **PROMPT_UNIVERSALE.md** — istruzioni operative complete per l'agente AI, pronte da riutilizzare.
+- **PROMPT_COMPATTO_8000.md** — versione da 7.150 caratteri per campi con limite di 8.000.
 - **RUN_TEMPLATE.md** — modello di esecuzione, registro e report di una ricerca.
 - **STATUS.md** — cosa è stato realizzato e cosa resta da implementare.
 
