@@ -15,6 +15,7 @@ def make_result(name: str) -> dict[str, object]:
         "ok": True,
         "source": "katelkum/chatgptcodebase",
         "message": f"Ciao, {name}!",
+        "roundtrip_version": 2,
         "checks": {"read": True, "write": True, "python": True},
     }
 
