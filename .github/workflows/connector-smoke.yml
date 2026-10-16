@@ -1,0 +1,32 @@
+name: Connector smoke test
+
+on:
+  push:
+    paths:
+      - "tests/connector_roundtrip.py"
+      - ".github/workflows/connector-smoke.yml"
+  pull_request:
+    paths:
+      - "tests/connector_roundtrip.py"
+      - ".github/workflows/connector-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Python round trip
+        run: |
+          python3 tests/connector_roundtrip.py --name GitHubActions | tee roundtrip-result.json
+          python3 -c 'import json; r=json.load(open("roundtrip-result.json")); assert r["ok"] and r["checks"]["python"] and r["message"] == "Ciao, GitHubActions!"'
+      - name: Upload small test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: connector-roundtrip-result
+          path: roundtrip-result.json
+          retention-days: 1
